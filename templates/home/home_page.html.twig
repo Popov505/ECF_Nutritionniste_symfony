@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Les recettes de Sandrine Coupart, diététicienne et nutritionniste - Page d'accueil
+{% endblock %}
+
+{% block body %}
+    <main class='home_page'>
+        <article class='home_article'>
+            <h2 class='article_title'>A propos</h2>
+            <div class='home_div'>
+                <figure class='home_figure'>
+                    <img class='home_photo' src={{ asset('/images/Sandrine_Coupart.svg')}} alt='Picture of Sandrine Coupart'>   
+                    <figcaption>Source : Image par Диана Кубенева de Pixabay</figcaption>
+                </figure>
+                <p class='home_content'>Diplômée de l'école de nutrition de Zurich, je suis diététicienne-nutritionniste
+                à Caen depuis 7 ans. J'écris également la chronique diététique dans l'hebdomadaire
+                Super Santé depuis 2 ans.
+            </div>
+        </article>
+
+        <article class='home_article'>
+            <h2 class='article_title'>Mes services</h2>
+            
+            <div class='home_div'>
+                <figure class='home_figure'>
+                    <img class='home_photo' src={{ asset('/images/breakfast.svg')}} alt='Illustration of the article my services'>   
+                    <figcaption>Source : Image par Bernadette Wurzinger de Pixabay</figcaption>
+                </figure>  
+                <p class='home_content'>Je prends en charge les patients dans le cadre de consultations diététiques. 
+                J'anime également des ateliers de prévention et d’information sur la nutrition.
+            </div>
+        </article>
+    </main>    
+{% endblock %}

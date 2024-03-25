@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Les recettes de Sandrine Coupart, diététicienne et nutritionniste - Les recettes
+{% endblock %}
+
+{% block body %}
+
+  <main class='recipes_main'>
+
+    <section class='recipes_section'>
+      <h2 class='article_title'>Les recettes</h2>
+      
+      {% for recipe in recipes %}
+        <article class='recipes_article'>
+          <h4 class='recipes_title'>{{ recipe.recipetitle }}</h4>
+
+          <div class='recipes_div'>
+            {% if recipe.recipedescription != null %}
+              <p class='recipes_text'>{{ recipe.recipedescription}}</p>
+            {% endif %}
+
+            {% if recipe.recipeImageName %}
+              <img class='recipes_photo' src={{ vich_uploader_asset(recipe, 'imageFile') }} alt="Photo of the recipe : {{ recipe.recipetitle }}">
+            {% else %}
+              <img class='recipes_photo' src={{ asset('images/logo.svg') }} alt="Photo of the recipe by default - Image par Диана Кубенева de Pixabay">
+            {% endif %}
+
+            <div class='recipes_sources'>
+              <ul> Sources
+                <li>Image : {{ recipe.recipeimagesource }}</li>
+                <li>Recette : <a class='recipes_sources' href={{ recipe.recipesource }} target="_blank">{{ recipe.recipesource }}</a></li>
+              <ul>
+            </div>            
+
+            <!-- Page of the recipe -->
+            <a class="link" href="{{ path('app_show_recipe', {'id': recipe.id}) }}">Voir la recette</a>
+          </div>
+        </article>
+      {% endfor %}
+
+    </section>
+
+  </main>
+  
+{% endblock %}

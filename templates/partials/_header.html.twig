@@ -1,0 +1,30 @@
+<header>
+  <!-- Connexion page -->
+  <nav class="header_navigation">
+    <ul>
+      {% if user %}
+        <li><p class="user_label">{{ user.userfirstname }} {{ user.userlastname }}</p></li>
+        {% if user.roles[0] == 'ROLE_ADMIN' %}
+          <li><a class="link" href="{{ path('app_admin') }}">Espace administrateur</a></li>
+        {% endif %}
+        <li><a class="link" href="{{ path('app_logout') }}">Se déconnecter</a></li>
+        {% else %}
+        <li><a class="link" href="{{ path('app_login') }}">Se connecter</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+
+  
+  <!-- Logo and return to home page -->
+  <a href="{{ path('app_home') }}">
+    <img class="logo" src={{ asset('/images/logo.svg')}} alt="Logo de Sandrine Coupart : diététicienne et nutritionniste"/>
+  </a>
+
+  <!-- Navigation to the main sections of the website -->
+  <nav class="header_navigation">
+    <ul>
+      <li><a class="link" href="{{ path('app_contact') }}">Me contacter</a></li>
+      <li><a class="link" href="{{ path('app_recipes') }}">Voir les recettes</a></li>
+    </ul>
+  </nav>
+</header>

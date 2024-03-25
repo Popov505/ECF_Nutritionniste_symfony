@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Les recettes de Sandrine Coupart, diététicienne et nutritionniste - Page de la recette : {{ 'recipe' }}
+{% endblock %}
+
+
+{% block body %}
+
+  <main class='recipe_main'>
+
+    <!-- Display of the recipe -->
+    <section class='recipe_section'>
+      {% include '/partials/recipes/_recipe_block.html.twig' %}
+    </section>
+
+    <aside class='recipe_aside'>
+      <!-- Let a review for this recipe and for this user -->
+      <article class='aside_article'>
+        <h2 class='article_title'>Laisser un commentaire</h2>
+          
+          <div class='form_div'>
+            {% if user %}
+              {{ include('partials/opinion/_form.html.twig')}}   
+            {% else %}
+              <p>Vous devez être connecté pour pouvoir laisser un commentaire. 
+              Rendez-vous sur la page <a href="{{ path('app_login')}}">Connexion</a>
+            {% endif %}
+          </div>
+      </article>
+
+      <!-- Display the average rate -->
+      <article class='aside_article'>
+        <h2 class='article_title'>Note moyenne de la recette</h2>
+          
+          <div class='average_rate_div'>
+            <!-- Display of the average rate -->
+            {% if averageRate %}
+              <p>Note moyenne : {{ averageRate }}/5</p>
+            {% else %}
+              <p>Il n'y a pas encore de note</p>
+            {% endif %}
+
+          </div>
+      </article>
+
+      
+      <section class='opinion_section'>
+        <h2 class='article_title'>Les avis des patients</h2>
+
+        <!-- Display the reviews of all users for this recipe -->   
+        {% for opinion in opinions %}
+          <article class='aside_article'>
+            <h4 class='opinion_title'>{{ opinion.opinionusers}}</h4>
+            <p>{{ opinion.opinionMessage}}</p>
+
+            <div class='opinion_div'>
+              
+              <p>{{ opinion.opinionrate}}/5</p>
+            </div>
+            
+          </article>
+        {% endfor %}
+      </section>
+    </aside>
+
+  </main>
+  
+{% endblock %}

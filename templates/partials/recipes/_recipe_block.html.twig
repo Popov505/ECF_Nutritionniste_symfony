@@ -1,0 +1,45 @@
+<article class='recipe_article'>
+
+  <h2 class='article_title'>{{ recipe.recipetitle }}</h2>
+
+  <section class='recipe_inner_section'>
+    {% if recipe.recipedescription != null %}
+      <p class='recipe_text'>Description : {{ recipe.recipedescription}}</p>
+    {% endif %}
+
+    <div class='recipe_div'>
+
+      <div class='recipe_text_div'>
+        <!-- Preparation duration -->
+        <p class='recipe_text'>Temps de préparation : {{ recipe.recipeprepduration}} minutes</p>
+        <!-- Rest duration -->
+        {% if recipe.reciperestduration != 0 %}
+          <p class='recipe_text'>Temps de repos : {{ recipe.reciperestduration}} minutes</p>
+        {% endif %}
+        <!-- Cook duration -->
+        {% if recipe.recipecookduration != 0 %}
+          <p class='recipe_text'>Temps de cuisson : {{ recipe.recipecookduration}} minutes</p>
+        {% endif %}
+        <!-- Ingredients -->
+        <p class='recipe_text'>Ingrédients : <br>{{ recipe.recipeingredient | raw}}</p>
+      </div>
+
+      <!-- Image -->
+      {% if recipe.recipeImageName %}
+        <img class='recipe_image' src="{{ vich_uploader_asset(recipe, 'imageFile') }}" alt="Photo of the recipe : {{ recipe.recipetitle }}">
+      {% else %}
+        <img class='recipe_image' src="{{ asset('images/logo.svg') }}" alt="Photo of the recipe : {{ recipe.recipetitle }}">
+      {% endif %}
+    </div>
+
+    <p class='recipe_text'>Etapes : <br>{{ recipe.recipestep | raw }}</p>
+  
+    <div class='recipe_sources'>
+      <ul> Sources
+        <li>Image : {{ recipe.recipeimagesource }}</li>
+        <li>Recette : <a class='recipe_sources' href={{ recipe.recipesource }} target="_blank">{{ recipe.recipesource }}</a></li>
+      <ul>
+    </div>
+  
+  </section>
+</article>

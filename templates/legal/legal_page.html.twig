@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Les recettes de Sandrine Coupart, diététicienne et nutritionniste - Mentions légales
+{% endblock %}
+
+{% block body %}
+
+  <article class='legal_article'>
+    <h2 class='article_title'>Mentions légales</h2>
+    <div class='legal_div'>
+
+      <section class='legal_section'>
+        <h3>Site fictif</h3>
+        <div class='legal_logo'>
+          <h4>But du site</h4>
+          <p>Ce site est à visée pédagogique uniquement. 
+          Il s'agit d'un TP de réalisation de site internet.</p>
+        </div>
+      </section>
+
+      <section class='legal_section'>
+        <h3>Logos</h3>
+        <div class='legal_logo'>
+          <h4>Logo du site</h4>
+          <p>Art-x A.I artxai de Pixabay</p>
+        </div>
+        <div class='legal_logo'>
+          <h4>Logos du tableau de commande</h3>
+          <p>https://fontawesome.com</p>
+        </div>
+      </section>
+
+      <section class='legal_section'>
+        <h3>Photos et illustrations</h3>
+        <div class='legal_picture'>
+          <h4>Photo de Sandrine Coupart</h4>
+          <p>Image par Диана Кубенева de Pixabay</p>
+        </div>
+        <div class='legal_picture'>
+          <h4>Mes services</h4>
+          <p>Image par Bernadette Wurzinger de Pixabay</p>
+        </div>
+      </section>
+
+      <section class='legal_section'>
+        <h3>Recettes</h3>
+        <div class='legal_recipe'>
+          <h4>Pâtes à la bolognaise</h4>
+          <p>Recette : https://odelices.ouest-france.fr</p>
+          <p>Image : -Rita-👩‍🍳 und 📷 mit ❤ de Pixabay</p>
+        </div>
+
+        {% for recipe in recipes %}
+
+          <div class='legal_recipe'>
+            <h4>{{ recipe.recipetitle }}</h4>
+            <p>{{ recipe.recipesource }}</p>
+            <p>{{ recipe.recipeimagesource}}</p>
+          </div>
+
+        {% endfor %}
+      </section>
+  </article>
+  
+{% endblock %}
