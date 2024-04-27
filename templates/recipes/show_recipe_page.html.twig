@@ -9,6 +9,14 @@
 
   <main class='recipe_main'>
 
+  <article class="confirmation_article">
+      {% for flashMessage in app.flashes('success') %}
+          <div class="confirmation_div" role="alert">
+              {{ flashMessage }}
+          </div>
+      {% endfor %}
+    </article>
+
     <!-- Display of the recipe -->
     <section class='recipe_section'>
       {% include '/partials/recipes/_recipe_block.html.twig' %}

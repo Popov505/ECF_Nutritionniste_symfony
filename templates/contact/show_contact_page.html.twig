@@ -5,53 +5,63 @@
 {% endblock %}
 
 {% block body %}
-{{ form_start(contactForm) }}
-    <main class='contact_main'>    
-        <article class='contact_article'>
-            <h2 class='article_title'>Me contacter</h2>
-            
-            <section class="contact_section">
+
+    {# Success messages #}
+    <article class="confirmation_article">
+        {% for flashMessage in app.flashes('success') %}
+            <div class="confirmation_div" role="alert">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+    </article>
+
+    {{ form_start(contactForm) }}
+        <main class='contact_main'>    
+            <article class='contact_article'>
+                <h2 class='article_title'>Me contacter</h2>
                 
-                <div class="contact_div">
-                    <p class="contact_field">
-                        {{ form_row(contactForm.contact_firstname, {
-                            'label': 'Votre prénom : ',})
-                        }}
-                    </p>
-                    <p class="contact_field">
-                        {{ form_row(contactForm.contact_lastname, {
-                            'label': 'Votre nom : ', })
-                        }}
-                    </p>
-                    <p class="contact_field">
-                        {{ form_row(contactForm.contact_email, {
-                            'label': 'Votre email : ', })
-                        }}
-                    </p>
-                </div>
+                <section class="contact_section">
+                    
+                    <div class="contact_div">
+                        <p class="contact_field">
+                            {{ form_row(contactForm.contact_firstname, {
+                                'label': 'Votre prénom : ',})
+                            }}
+                        </p>
+                        <p class="contact_field">
+                            {{ form_row(contactForm.contact_lastname, {
+                                'label': 'Votre nom : ', })
+                            }}
+                        </p>
+                        <p class="contact_field">
+                            {{ form_row(contactForm.contact_email, {
+                                'label': 'Votre email : ', })
+                            }}
+                        </p>
+                    </div>
 
-                <div class="contact_div">
-                    <p class="contact_field">
-                        {{ form_row(contactForm.contact_phone, {
-                            'label': 'Votre téléphone : ', })
-                        }}
-                    </p>
-                    <p class="contact_field">
-                        {{ form_row(contactForm.contact_title, {
-                            'label': 'Sujet du message : ', })
-                        }}
-                    </p>
-                    <p class="contact_field">
-                        {{ form_row(contactForm.contact_message, {
-                            'label': 'Votre message : ', })
-                        }}
-                    </p>                  
-                </div>                                 
+                    <div class="contact_div">
+                        <p class="contact_field">
+                            {{ form_row(contactForm.contact_phone, {
+                                'label': 'Votre téléphone : ', })
+                            }}
+                        </p>
+                        <p class="contact_field">
+                            {{ form_row(contactForm.contact_title, {
+                                'label': 'Sujet du message : ', })
+                            }}
+                        </p>
+                        <p class="contact_field">
+                            {{ form_row(contactForm.contact_message, {
+                                'label': 'Votre message : ', })
+                            }}
+                        </p>                  
+                    </div>                                 
 
-            </section>
+                </section>
 
-            <button class="link" type"button">Envoyer la demande</button>
-        </article>
-    </main>    
+                <button class="link" type"button">Envoyer la demande</button>
+            </article>
+        </main>    
     {{ form_end(contactForm) }}
 {% endblock %}

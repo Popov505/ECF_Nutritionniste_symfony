@@ -76,6 +76,9 @@ class RecipesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entManInt->persist($opinion);
             $entManInt->flush();
+
+            $this->addFlash('success', 'Votre commentaire a bien été envoyé');
+
         }
         
         return $this->render('recipes/show_recipe_page.html.twig', [

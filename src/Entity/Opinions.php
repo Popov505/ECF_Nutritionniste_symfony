@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\OpinionsRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: OpinionsRepository::class)]
 class Opinions
@@ -15,9 +16,12 @@ class Opinions
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\Length(min: 2, max: 255)]
+    #[Assert\Regex("/^[-',;:.?!-'0-9a-zA-ZÀ-ÿ\s]+$/")]
     private ?string $opinion_message = null;
 
     #[ORM\Column]
+    #[Assert\Regex("/^[1-5]$/")]
     private ?int $opinion_rate = null;
 
     #[ORM\Column(nullable: true)]

@@ -35,15 +35,4 @@ class OpinionsCrudController extends AbstractCrudController
         yield AssociationField::new('opinion_users', 'Utilisateurs');
         yield AssociationField::new('opinion_recipes', 'Recettes');
     }
-
-    /*
-    public function configureFields(string $pageName): iterable
-    {
-        return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
-        ];
-    }
-    */
 }

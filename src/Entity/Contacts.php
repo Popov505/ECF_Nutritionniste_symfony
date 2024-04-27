@@ -3,10 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\ContactsRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ContactsRepository::class)]
+#[UniqueEntity(fields: 'contact_email', message: "Vous avez déjà laissé un message. Merci d'attendre que votre demande soit traitée.")]
 class Contacts
 {
     #[ORM\Id]
@@ -15,21 +17,33 @@ class Contacts
     private ?int $id = null;
 
     #[ORM\Column(length: 60)]
-    private ?string $contact_lastname = null;
-
-    #[ORM\Column(length: 60)]
+    #[Assert\Length(min: 2, max: 60)]
+    #[Assert\Regex("/^[-'0-9a-zA-ZÀ-ÿ\s]+$/")]
     private ?string $contact_firstname = null;
 
-    #[ORM\Column(length: 20)]
+    #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 2, max: 60)]
+    #[Assert\Regex("/^[-'0-9a-zA-ZÀ-ÿ\s]+$/")]
+    private ?string $contact_lastname = null;
+
+    #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 2, max: 30)]
+    #[Assert\Regex('/^[-+0-9\s]+$/')]
     private ?string $contact_phone = null;
     
     #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 2, max: 255)]
+    #[Assert\Regex('/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/')]
     private ?string $contact_email = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 2, max: 60)]
+    #[Assert\Regex("/^[-'0-9a-zA-ZÀ-ÿ\s]+$/")]
     private ?string $contact_title = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 2, max: 255)]
+    #[Assert\Regex("/^[-',;:.?!-'0-9a-zA-ZÀ-ÿ\s]+$/")]
     private ?string $contact_message = null;
 
     public function getId(): ?int
