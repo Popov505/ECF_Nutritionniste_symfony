@@ -31,15 +31,12 @@ class RecipesController extends AbstractController
         
         // Allergens
         $allergens = $allergensRepository->findBy([],['id' => 'ASC']);
-        dump($allergens);
         
         $recipes = $recipesRepository->findBy([],['id' => 'ASC']);
         /* Filter function (not working) 
         $allergenId = $request->get('allergenId');
         $recipes = $recipesRepository->findRecipes($allergenId);
         */
-
-        dump($recipes, $user);
 
         return $this->render('recipes/recipes_page.html.twig', [
             'controller_name' => 'RecipesController',
